@@ -13,6 +13,9 @@ const jsonParser = bodyParser()
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
+app.get('/',(req,res)=>{
+	res.send(`<h4>api</h4>`)
+})
 //Connnect Db
 mongoose.connect(process.env.DATABASE_URL || "3000", {
 	useNewUrlParser: true,

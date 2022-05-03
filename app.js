@@ -13,9 +13,6 @@ const jsonParser = bodyParser()
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
-app.get('/',(req,res)=>{
-	res.send(`<h4>api</h4>`)
-})
 //Connnect Db
 mongoose.connect(process.env.DATABASE_URL || "3000", {
 	useNewUrlParser: true,
@@ -33,12 +30,12 @@ app.post('/authen',jsonParser,(req,res,next)=>{
 		res.json({ status:"error",msg:err.msg})
 	}
 })
-//Fir checj register form
+//For check register form
 app.post('/register', async (req, res) => {
 	const { username, password: plainTextPassword } = req.body
 	if (!username || typeof username !== 'string') {
 		return res.json({ status: 'error', error: 'Invalid username' })
-	}
+	}	
 	if (!plainTextPassword || typeof plainTextPassword !== 'string') {
 		return res.json({ status: 'error', error: 'Invalid password' })
 	}
